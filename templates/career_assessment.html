@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reuse the same CSS styles from dashboard.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #4ade80;
+            padding-bottom: 10px;
+        }
+
+        .assessment-intro {
+            margin-bottom: 30px;
+        }
+
+        .assessment-intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .assessment-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .step {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            background-color: #4ade80;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            color: #2d3748;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .option {
+            background-color: #e5e7eb;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            background-color: #d1d5db;
+        }
+
+        .option.selected {
+            background-color: #4ade80;
+            color: white;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #4ade80, #3fac6c);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(74, 222, 128, 0.4);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: #4ade80;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/dashboard" class="back-btn">← Back to Dashboard</a>
+        <h1>Career Assessment</h1>
+        
+        <div class="assessment-intro">
+            <p>This assessment will help identify your strengths, interests, and values to suggest career paths that align with your personality and skills. Answer honestly for the most accurate results.</p>
+        </div>
+
+        <div class="assessment-steps">
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h2 class="step-title">Skills Assessment</h2>
+                </div>
+                
+                <div class="question">
+                    <div class="question-text">Which of these skills do you possess? (Select all that apply)</div>
+                    <div class="options">
+                        <div class="option">Problem Solving</div>
+                        <div class="option">Communication</div>
+                        <div class="option">Leadership</div>
+                        <div class="option">Creativity</div>
+                        <div class="option">Technical Skills</div>
+                        <div class="option">Analytical Thinking</div>
+                        <div class="option">Teamwork</div>
+                        <div class="option">Time Management</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h2 class="step-title">Interests Assessment</h2>
+                </div>
+                
+                <div class="question">
+                    <div class="question-text">What type of activities do you enjoy most?</div>
+                    <div class="options">
+                        <div class="option">Working with numbers/data</div>
+                        <div class="option">Helping people</div>
+                        <div class="option">Creating art/design</div>
+                        <div class="option">Building things</div>
+                        <div class="option">Researching/analyzing</div>
+                        <div class="option">Teaching/training</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h2 class="step-title">Work Environment</h2>
+                </div>
+                
+                <div class="question">
+                    <div class="question-text">What work environment do you prefer?</div>
+                    <div class="options">
+                        <div class="option">Office setting</div>
+                        <div class="option">Remote work</div>
+                        <div class="option">Outdoor/field work</div>
+                        <div class="option">Flexible/hybrid</div>
+                        <div class="option">Fast-paced</div>
+                        <div class="option">Structured routine</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <h2 class="step-title">Values Assessment</h2>
+                </div>
+                
+                <div class="question">
+                    <div class="question-text">What's most important to you in a career?</div>
+                    <div class="options">
+                        <div class="option">High salary</div>
+                        <div class="option">Job security</div>
+                        <div class="option">Work-life balance</div>
+                        <div class="option">Career growth</div>
+                        <div class="option">Making an impact</div>
+                        <div class="option">Creative freedom</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-submit">Get My Career Matches</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

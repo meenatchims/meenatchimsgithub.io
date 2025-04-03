@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #4ade80;
+            padding-bottom: 10px;
+        }
+
+        /* Resume Builder Intro */
+        .resume-builder-intro {
+            margin-bottom: 30px;
+        }
+
+        .resume-builder-intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Main Layout */
+        .resume-sections {
+            display: flex;
+            gap: 30px;
+        }
+
+        .form-section {
+            flex: 1;
+        }
+
+        .preview-section {
+            flex: 1;
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #4ade80;
+            box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
+            outline: none;
+        }
+
+        /* Button Styles */
+        .btn {
+            background: linear-gradient(135deg, #4ade80, #3fac6c);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(74, 222, 128, 0.4);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #4ade80;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* Resume Preview Styles */
+        .resume-preview {
+            background-color: white;
+            padding: 30px;
+            min-height: 800px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .resume-header h2 {
+            font-size: 2rem;
+            color: #2d3748;
+        }
+
+        .resume-header p {
+            color: #6b7280;
+        }
+
+        .resume-section {
+            margin-bottom: 20px;
+        }
+
+        .resume-section h3 {
+            border-bottom: 2px solid #4ade80;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        /* Template Selector */
+        .template-selector {
+            margin-bottom: 20px;
+        }
+
+        .templates {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .template {
+            width: 150px;
+            height: 200px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .template:hover {
+            border-color: #4ade80;
+        }
+
+        .template.selected {
+            border-color: #4ade80;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+
+        /* Skill Tags */
+        .skill-tag {
+            display: inline-block;
+            background-color: #e2e8f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .remove-skill {
+            cursor: pointer;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
+        .remove-skill:hover {
+            color: #ef4444;
+        }
+
+        /* Experience and Education Entries */
+        .experience-entry, .education-entry {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/dashboard" class="back-btn">← Back to Dashboard</a>
+        <h1>Resume Builder</h1>
+        
+        <div class="resume-builder-intro">
+            <p>Create a professional resume in minutes. Fill in your details, choose a template, and download your resume ready to impress employers.</p>
+        </div>
+
+        <div class="template-selector">
+            <label>Select a Template:</label>
+            <div class="templates">
+                <div class="template selected"></div>
+                <div class="template"></div>
+                <div class="template"></div>
+                <div class="template"></div>
+            </div>
+        </div>
+
+        <div class="resume-sections">
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" class="form-control" placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="john@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="(123) 456-7890">
+                </div>
+
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn Profile</label>
+                    <input type="url" id="linkedin" class="form-control" placeholder="https://linkedin.com/in/yourprofile">
+                </div>
+
+                <div class="form-group">
+                    <label for="summary">Professional Summary</label>
+                    <textarea id="summary" class="form-control" rows="4" placeholder="Briefly describe your professional background and skills..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Work Experience</label>
+                    <div id="experience-fields">
+                        <div class="experience-entry">
+                            <input type="text" class="form-control" placeholder="Job Title" style="margin-bottom: 5px;">
+                            <input type="text" class="form-control" placeholder="Company" style="margin-bottom: 5px;">
+                            <input type="text" class="form-control" placeholder="Dates (e.g., 2018-2021)" style="margin-bottom: 5px;">
+                            <textarea class="form-control" placeholder="Responsibilities and achievements..." rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="btn" style="background: #3b82f6;">Add Another Position</button>
+                </div>
+
+                <div class="form-group">
+                    <label>Education</label>
+                    <div id="education-fields">
+                        <div class="education-entry">
+                            <input type="text" class="form-control" placeholder="Degree" style="margin-bottom: 5px;">
+                            <input type="text" class="form-control" placeholder="Institution" style="margin-bottom: 5px;">
+                            <input type="text" class="form-control" placeholder="Dates (e.g., 2014-2018)" style="margin-bottom: 5px;">
+                        </div>
+                    </div>
+                    <button type="button" class="btn" style="background: #3b82f6;">Add Another Education</button>
+                </div>
+
+                <div class="form-group">
+                    <label>Skills</label>
+                    <div id="skills-container">
+                        <input type="text" class="form-control" id="skills-input" placeholder="Type a skill and press Enter">
+                    </div>
+                    <div id="skills-tags" style="margin-top: 10px;"></div>
+                </div>
+
+                <button type="button" class="btn">Generate Resume</button>
+                <button type="button" class="btn" style="background: #10b981;">Download PDF</button>
+            </div>
+
+            <div class="preview-section">
+                <div class="resume-preview">
+                    <div class="resume-header">
+                        <h2 id="preview-name">John Doe</h2>
+                        <p id="preview-contact">john@example.com | (123) 456-7890 | linkedin.com/in/johndoe</p>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>Professional Summary</h3>
+                        <p id="preview-summary">Experienced professional with 5+ years in the industry. Skilled in project management, team leadership, and data analysis. Passionate about creating efficient solutions and driving business growth.</p>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>Work Experience</h3>
+                        <div id="preview-experience">
+                            <p><strong>Senior Project Manager</strong> | ABC Company | 2018-2021</p>
+                            <ul>
+                                <li>Led a team of 10 developers to deliver projects on time and under budget</li>
+                                <li>Implemented new processes that increased team productivity by 30%</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>Education</h3>
+                        <div id="preview-education">
+                            <p><strong>MBA in Business Administration</strong> | University of XYZ | 2014-2016</p>
+                            <p><strong>BS in Computer Science</strong> | State University | 2010-2014</p>
+                        </div>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>Skills</h3>
+                        <div id="preview-skills">
+                            <p>Project Management, Team Leadership, Data Analysis, Agile Methodologies, Communication, Problem Solving</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Template selection
+            const templates = document.querySelectorAll('.template');
+            templates.forEach(template => {
+                template.addEventListener('click', function() {
+                    templates.forEach(t => t.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            // Skills input
+            const skillsInput = document.getElementById('skills-input');
+            const skillsTags = document.getElementById('skills-tags');
+            
+            skillsInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && this.value.trim() !== '') {
+                    e.preventDefault();
+                    
+                    const skillTag = document.createElement('span');
+                    skillTag.className = 'skill-tag';
+                    skillTag.innerHTML = `
+                        ${this.value.trim()}
+                        <span class="remove-skill">×</span>
+                    `;
+                    
+                    skillTag.querySelector('.remove-skill').addEventListener('click', function() {
+                        skillTag.remove();
+                    });
+                    
+                    skillsTags.appendChild(skillTag);
+                    this.value = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
